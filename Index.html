@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gigglevine's Magical Birthday 🎀</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#fff0f5,#f3e8ff,#ffe4ec);
+  color: #60445b;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.script {
+  font-family: 'Great Vibes', cursive;
+  color: #c45b91;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  margin: 15px 0;
+}
+
+h2 {
+  color: #b65c91;
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.8;
+}
+
+section {
+  padding: 65px 18px;
+}
+
+.card {
+  background: rgba(255,255,255,.78);
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 28px 20px;
+  margin: 20px auto;
+  max-width: 650px;
+  box-shadow: 0 10px 35px rgba(160,90,130,.12);
+}
+
+.btn {
+  background: linear-gradient(135deg,#dc83ad,#a88bdc);
+  color: white;
+  padding: 13px 25px;
+  border-radius: 30px;
+  margin: 10px;
+  font-size: 15px;
+  box-shadow: 0 5px 15px #d9a5c5;
+}
+
+.btn:active {
+  transform: scale(.96);
+}
+
+/* PASSWORD SCREEN */
+#lockScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lockBox {
+  width: 100%;
+  max-width: 390px;
+  background: white;
+  padding: 35px 22px;
+  border-radius: 30px;
+  box-shadow: 0 15px 45px #d7a7c8;
+}
+
+.lockBox input {
+  width: 85%;
+  padding: 14px;
+  border: 1px solid #e5b8d1;
+  border-radius: 15px;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 7px;
+}
+
+#error {
+  color: #c44c75;
+  font-size: 13px;
+}
+
+/* HERO */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background: radial-gradient(circle,#fff 0%,#ffe5f0 55%,#eaddff 100%);
+}
+
+.hero .ribbon {
+  font-size: 55px;
+}
+
+.hero p {
+  max-width: 500px;
+}
+
+/* MEMORIES */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 13px;
+  max-width: 650px;
+  margin: 25px auto;
+}
+
+.memory {
+  background: white;
+  padding: 9px;
+  border-radius: 17px;
+  box-shadow: 0 5px 18px #d9b7ce;
+}
+
+.memory img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.memory p {
+  padding: 9px 2px 3px;
+  font-size: 12px;
+}
+
+/* LETTER */
+.letter {
+  background: #fffaf5;
+  border: 2px dashed #e5a9c7;
+  text-align: left;
+  line-height: 2;
+}
+
+/* SECRET */
+#secretPage {
+  min-height: 100vh;
+  padding: 50px 20px;
+  background: linear-gradient(140deg,#fce4f0,#e9dcff);
+}
+
+/* CAKE */
+.cake {
+  font-size: 100px;
+  margin: 15px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+/* FLOATING DECOR */
+.float {
+  position: fixed;
+  top: -30px;
+  pointer-events: none;
+  animation: fall 7s linear forwards;
+  z-index: 20;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+footer {
+  padding: 30px;
+  color: #a36b91;
+  font-size: 13px;
+}
+
+@media(max-width:400px) {
+  .memory img { height: 145px; }
+  section { padding: 48px 13px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+  <div class="lockBox">
+    <div style="font-size:55px">🎀</div>
+    <h1 class="script">A Little Surprise!</h1>
+    <p>A magical world is waiting for you...</p>
+    <p>Only Gigglevine can enter 💗</p>
+
+    <input id="password" type="password"
+      inputmode="numeric" maxlength="4"
+      placeholder="••••">
+
+    <br>
+    <button class="btn" onclick="unlock()">Unlock My Surprise ✨</button>
+    <p id="error"></p>
+  </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<main id="mainSite" class="hidden">
+
+  <!-- WELCOME -->
+  <div class="hero">
+    <div class="ribbon">🎀 ✨ 🎂</div>
+    <p>Welcome to your little magical world</p>
+    <h1 class="script">Happy Birthday</h1>
+    <h1>Gigglevine 💗</h1>
+    <p>
+      Today is all about you, your beautiful smile,
+      endless giggles and all the memories we share.
+    </p>
+    <button class="btn" onclick="goTo('memories')">
+      Start the Magic ↓
+    </button>
+  </div>
+
+  <!-- MEMORIES -->
+  <section id="memories">
+    <h1 class="script">Our Little Memories</h1>
+    <p>Every picture holds a little piece of happiness 🌷</p>
+
+    <div class="gallery">
+      <div class="memory">
+        <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=600" alt="Friendship memory">
+        <p>Endless giggles ✨</p>
+      </div>
+
+      <div class="memory">
+        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600" alt="Celebration">
+        <p>Beautiful moments 🌸</p>
+      </div>
+
+      <div class="memory">
+        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=600" alt="Friends">
+        <p>Favourite memories 🌷</p>
+      </div>
+
+      <div class="memory">
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600" alt="Special day">
+        <p>Forever us 💗</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px">
+      Replace these sample pictures with your own memories later.
+    </p>
+  </section>
+
+  <!-- LETTER -->
+  <section id="letter">
+    <h1 class="script">A Letter For You 💌</h1>
+
+    <div class="card letter">
+      Dear Gigglevine 🎀,<br><br>
+
+      Happy Birthday to one of the most special people
+      in my life! 💗
+
+      Thank you for all the laughter, silly conversations,
+      unforgettable moments and beautiful memories.
+
+      May your days always be filled with happiness,
+      your dreams turn into reality and your smile
+      never fade.
+
+      I hope this new chapter brings you endless
+      adventures, success, love and magic.
+
+      No matter how many birthdays pass,
+      I hope we always keep creating memories
+      and laughing at the silliest things.
+
+      <br><br>
+      With lots of love,<br>
+      Your forever friend 💕
+    </div>
+  </section>
+
+  <!-- SURPRISE NOTES -->
+  <section id="surprises">
+    <h1 class="script">Little Notes For You</h1>
+    <p>Tap the button to discover a surprise message 💝</p>
+
+    <div class="card">
+      <div id="note" style="font-size:20px;padding:15px">
+        A little surprise is waiting...
+      </div>
+      <button class="btn" onclick="newNote()">
+        Open a Surprise 💌
+      </button>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <h1 class="script">Friendship Quiz 🦋</h1>
+
+    <div class="card">
+      <h2>What makes our friendship special?</h2>
+
+      <button class="btn" onclick="quizAnswer(0)">
+        Our silly laughter 😂
+      </button>
+
+      <button class="btn" onclick="quizAnswer(1)">
+        Our endless memories 💗
+      </button>
+
+      <button class="btn" onclick="quizAnswer(2)">
+        All of these! ✨
+      </button>
+
+      <p id="quizResult" style="margin-top:20px"></p>
+    </div>
+  </section>
+
+  <!-- CAKE -->
+  <section id="birthday">
+    <h1 class="script">Make a Birthday Wish!</h1>
+
+    <div class="card">
+      <div class="cake">🎂</div>
+      <h2>One wish. Endless magic.</h2>
+      <p>Close your eyes and make a beautiful wish.</p>
+
+      <button class="btn" onclick="celebrate()">
+        My Birthday Wish ✨
+      </button>
+
+      <p id="wishResult" style="margin-top:15px"></p>
+    </div>
+  </section>
+
+  <!-- SECRET PAGE BUTTON -->
+  <section>
+    <h1 class="script">One Last Surprise...</h1>
+    <p>There is a little secret waiting for you.</p>
+    <button class="btn" onclick="openSecret()">
+      Open Secret Page 🔐
+    </button>
+  </section>
+
+  <footer>
+    Made with endless love & giggles 💗<br>
+    Especially for Gigglevine 🎀
+  </footer>
+
+</main>
+
+<!-- SECRET PAGE -->
+<div id="secretPage" class="hidden">
+  <div style="font-size:65px">💌</div>
+  <h1 class="script">Your Secret Corner</h1>
+
+  <div class="card">
+    <h2>A little reminder...</h2>
+    <p>
+      You are special, you are appreciated,
+      and you deserve every beautiful thing
+      life has to offer.
+
+      Keep shining, keep laughing,
+      and never stop being YOU! 🌷
+
+      <br><br>
+      Happy Birthday, Gigglevine! 🎀
+    </p>
+  </div>
+
+  <button class="btn" onclick="closeSecret()">
+    Back to My Birthday Page 💗
+  </button>
+</div>
+
+<script>
+const PASSWORD = "2117";
+
+function unlock() {
+  const entered = document.getElementById("password").value;
+
+  if (entered === PASSWORD) {
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("mainSite").classList.remove("hidden");
+    confetti();
+    window.scrollTo(0,0);
+  } else {
+    document.getElementById("error").textContent =
+      "Oops! That's not the secret code. Try again 💗";
+  }
+}
+
+document.getElementById("password").addEventListener("keydown",function(e) {
+  if(e.key === "Enter") unlock();
+});
+
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+const notes = [
+  "You make ordinary days feel magical! ✨",
+  "Never stop being your wonderful self. 💗",
+  "More laughter, more adventures, more memories! 🌷",
+  "You deserve all the happiness in the world. 🎀",
+  "Here's to another year of beautiful moments! 🦋",
+  "Keep shining like the star you are! ⭐"
+];
+
+function newNote() {
+  const random = Math.floor(Math.random()*notes.length);
+  document.getElementById("note").textContent = notes[random];
+}
+
+function quizAnswer(choice) {
+  document.getElementById("quizResult").textContent =
+    choice === 2
+    ? "Correct! All of these make our friendship magical! 💗"
+    : "That's definitely part of it! But the answer is ALL OF THESE! 💕";
+}
+
+function celebrate() {
+  document.getElementById("wishResult").textContent =
+    "May all your beautiful wishes come true! Happy Birthday! 🎉💗";
+  confetti();
+}
+
+function openSecret() {
+  document.getElementById("mainSite").classList.add("hidden");
+  document.getElementById("secretPage").classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+function closeSecret() {
+  document.getElementById("secretPage").classList.add("hidden");
+  document.getElementById("mainSite").classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+function confetti() {
+  const decorations = ["💗","✨","🎀","🌸","💕","⭐"];
+
+  for(let i=0;i<35;i++) {
+    const item = document.createElement("div");
+    item.className = "float";
+    item.textContent =
+      decorations[Math.floor(Math.random()*decorations.length)];
+
+    item.style.left = Math.random()*100 + "vw";
+    item.style.animationDuration = (3+Math.random()*4) + "s";
+    item.style.fontSize = (15+Math.random()*18) + "px";
+
+    document.body.appendChild(item);
+
+    setTimeout(()=>item.remove(),7000);
+  }
+}
+</script>
+
+</body>
+</html>
